@@ -15,14 +15,6 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create note" do
-    assert_difference('Note.count') do
-      post notes_url, params: { note: { description: @note.description, title: @note.title } }
-    end
-
-    assert_redirected_to note_url(Note.last)
-  end
-
   test "should show note" do
     get note_url(@note)
     assert_response :success
