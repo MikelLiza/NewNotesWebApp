@@ -4,6 +4,10 @@ class NoteTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  setup do
+    @user = users(:one)
+  end
+
   test "should not save empty note" do
     note = Note.new
     note.save
@@ -14,6 +18,7 @@ class NoteTest < ActiveSupport::TestCase
     note = Note.new
     note.title = 'My Note'
     note.description = 'My note is very special.'
+    note.user = @user
     note.save
     assert note.valid?
   end
@@ -22,12 +27,14 @@ class NoteTest < ActiveSupport::TestCase
     note1 = Note.new
     note1.title = 'My Note'
     note1.description = 'My note is very special.'
+    note1.user = @user
     note1.save
     assert note1.valid?
 
     note2 = Note.new
     note2.title = 'My Note'
     note2.description = 'My note is very special.'
+    note2.user = @user
     note2.save
     refute note2.valid?
   end
