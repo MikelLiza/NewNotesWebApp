@@ -7,6 +7,19 @@
   %b Description:
   = @note.description
 
+%p Tasks:
+%table
+  %tbody
+    - @note.tasks.each do |task|
+      %tr{id: "task_#{task.id}"}
+        %td= task.title
+        %td= link_to 'Show', task
+        %td= link_to 'Edit', edit_task_path(task)
+        %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?'}, remote => true
+
+%p= link_to 'Add Task', new_task_path(note_id: @note)
+
+
 = link_to 'Edit', edit_note_path(@note)
 \|
 = link_to 'Back', notes_path
